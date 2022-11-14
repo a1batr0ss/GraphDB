@@ -5,6 +5,8 @@ using namespace std;
 
 GraphDatabase::GraphDatabase()
 {
+    (this->persist_file).open("gdb1.gdb", ios::out|ios::binary);
+    (this->persist_file_r).open("gdb1.gdb", ios::in|ios::binary);
     return;
 }
 
@@ -31,9 +33,13 @@ NodeVector GraphDatabase::get_node(unsigned int id)
     return this->G.get_node(id);
 }
 
+Node* GraphDatabase::read_node(unsigned int id)
+{
+    return this->G.read_node(id, this->persist_file_r);
+}
+
 void GraphDatabase::persist()
 {
-    (this->persist_file).open("gdb1.gdb", ios::out|ios::binary);
     (this->G).persist(this->persist_file);
     return;
 }
@@ -56,6 +62,7 @@ void GraphDatabase::recover()
 GraphDatabase::~GraphDatabase()
 {
     (this->persist_file).close();
+    (this->persist_file_r).close();
     return;
 }
 

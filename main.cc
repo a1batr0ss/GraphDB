@@ -22,6 +22,8 @@ int main()
     cout << res << endl;
 
     gdb.persist();
+    Node* t = gdb.read_node(1);
+    cout << t->get_id() << endl;
 
     //gdb.recover();
     //unsigned int res = gdb.get_node(0).lazy_get("father").lazy_get("brother").query()[1]->get_id();

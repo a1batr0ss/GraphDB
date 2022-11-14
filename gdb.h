@@ -11,6 +11,7 @@ class GraphDatabase {
   private:
     Graph G;
     ofstream persist_file;
+    ifstream persist_file_r;
 
   public:
     GraphDatabase();
@@ -19,6 +20,7 @@ class GraphDatabase {
     void delete_node(unsigned int id);
     NodeVector get_node(unsigned int id);
 
+    Node* read_node(unsigned int id);
     void persist();
     void recover();
     ~GraphDatabase();
